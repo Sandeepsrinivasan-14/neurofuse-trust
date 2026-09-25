@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05070f"/>
+      <stop offset="1" stop-color="#0d1030"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="0.12" cy="0.1" r="0.6">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="0.85" cy="0.95" r="0.6">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.35"/>
+      <stop offset="0.5" stop-color="#f472b6" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.45" stop-color="#bfefff"/>
+      <stop offset="0.62" stop-color="#22d3ee"/>
+      <stop offset="0.8" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#94a3ff" stroke-opacity="0.07"/>
+    </pattern>
+    <filter id="blur"><feGaussianBlur stdDeviation="3"/></filter>
+    <style>
+      .n { animation: tw 3s ease-in-out infinite; }
+      .n:nth-child(3n) { animation-delay: -1s; }
+      .n:nth-child(3n+1) { animation-delay: -2s; }
+      .l { stroke-dasharray: 4 8; animation: d 2s linear infinite; }
+      .spin { animation: sp 40s linear infinite; transform-origin: 960px 170px; }
+      @keyframes tw { 50% { opacity: 0.25; } }
+      @keyframes d { to { stroke-dashoffset: -24; } }
+      @keyframes sp { to { transform: rotate(360deg); } }
+    </style>
+  </defs>
+  <rect width="1200" height="340" rx="24" fill="url(#bg)"/>
+  <rect width="1200" height="340" rx="24" fill="url(#grid)"/>
+  <rect width="1200" height="340" rx="24" fill="url(#g1)"/>
+  <rect width="1200" height="340" rx="24" fill="url(#g2)"/>
+
+  <g class="spin">
+    <ellipse cx="960" cy="170" rx="190" ry="54" fill="none" stroke="#22d3ee" stroke-opacity="0.35"/>
+    <ellipse cx="960" cy="170" rx="210" ry="70" fill="none" stroke="#a78bfa" stroke-opacity="0.3" transform="rotate(28 960 170)"/>
+  </g>
+  <g>
+    <ellipse cx="960" cy="170" rx="120" ry="100" fill="#22d3ee" fill-opacity="0.07" filter="url(#blur)"/>
+    <path d="M960 76 C 900 76, 846 110, 846 168 C 846 226, 900 262, 958 262" fill="none" stroke="#22d3ee" stroke-width="2" stroke-opacity="0.8"/>
+    <path d="M962 76 C 1022 76, 1076 110, 1076 168 C 1076 226, 1022 262, 964 262" fill="none" stroke="#a78bfa" stroke-width="2" stroke-opacity="0.8"/>
+    <path d="M961 80 C 950 110, 972 130, 958 160 S 970 220, 961 258" fill="none" stroke="#e6ebff" stroke-opacity="0.35" stroke-width="1.5"/>
+    <path d="M870 140 C 895 128, 905 150, 930 138 M872 196 C 898 186, 912 208, 936 196 M885 234 C 905 222, 922 240, 940 230" fill="none" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="1.5"/>
+    <path d="M990 128 C 1015 140, 1030 118, 1052 132 M986 186 C 1012 198, 1030 176, 1054 190 M990 232 C 1010 244, 1026 226, 1044 236" fill="none" stroke="#a78bfa" stroke-opacity="0.55" stroke-width="1.5"/>
+    <g stroke-width="1.2">
+      <line class="l" x1="890" y1="120" x2="940" y2="170" stroke="#22d3ee" stroke-opacity="0.6"/>
+      <line class="l" x1="940" y1="170" x2="1000" y2="150" stroke="#a78bfa" stroke-opacity="0.6"/>
+      <line class="l" x1="1000" y1="150" x2="1040" y2="210" stroke="#f472b6" stroke-opacity="0.6"/>
+      <line class="l" x1="900" y1="220" x2="940" y2="170" stroke="#22d3ee" stroke-opacity="0.6"/>
+      <line class="l" x1="1000" y1="150" x2="1030" y2="110" stroke="#a78bfa" stroke-opacity="0.6"/>
+    </g>
+    <g fill="#e0f7ff">
+      <circle class="n" cx="890" cy="120" r="3.5"/>
+      <circle class="n" cx="940" cy="170" r="4.5" fill="#22d3ee"/>
+      <circle class="n" cx="1000" cy="150" r="4.5" fill="#a78bfa"/>
+      <circle class="n" cx="1040" cy="210" r="3.5" fill="#f472b6"/>
+      <circle class="n" cx="900" cy="220" r="3"/>
+      <circle class="n" cx="1030" cy="110" r="3"/>
+      <circle class="n" cx="960" cy="230" r="2.5"/>
+      <circle class="n" cx="925" cy="100" r="2.5"/>
+    </g>
+    <circle cx="1012" cy="190" r="10" fill="#f472b6" fill-opacity="0.35"/>
+    <circle cx="1012" cy="190" r="4" fill="#f472b6"/>
+  </g>
+
+  <g transform="translate(64 64)">
+    <rect width="238" height="30" rx="15" fill="url(#glass)" stroke="#94a3ff" stroke-opacity="0.25"/>
+    <circle cx="18" cy="15" r="4" fill="#22d3ee"/>
+    <text x="32" y="20" fill="#9aa3c7" font-size="13">Trustworthy neuro-imaging AI</text>
+  </g>
+  <text x="60" y="176" font-size="74" font-weight="800" letter-spacing="-2.5" fill="url(#title)">NeuroFuse-Trust</text>
+  <text x="64" y="218" fill="#9aa3c7" font-size="19">Gated CNN + Transformer fusion for brain MRI classification,</text>
+  <text x="64" y="244" fill="#9aa3c7" font-size="19">with Grad-CAM explanations and calibrated confidence.</text>
+  <g transform="translate(64 272)" font-size="13" font-family="Consolas, JetBrains Mono, monospace">
+    <rect width="136" height="30" rx="10" fill="url(#glass)" stroke="#22d3ee" stroke-opacity="0.45"/>
+    <text x="68" y="20" text-anchor="middle" fill="#e6ebff">96.61% accuracy</text>
+    <rect x="148" width="132" height="30" rx="10" fill="url(#glass)" stroke="#a78bfa" stroke-opacity="0.45"/>
+    <text x="214" y="20" text-anchor="middle" fill="#e6ebff">0.9665 macro-F1</text>
+    <rect x="292" width="136" height="30" rx="10" fill="url(#glass)" stroke="#f472b6" stroke-opacity="0.45"/>
+    <text x="360" y="20" text-anchor="middle" fill="#e6ebff">ECE 0.020 (cal.)</text>
+  </g>
+</svg>

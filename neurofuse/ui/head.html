@@ -1,0 +1,174 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script type="module">
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+
+function mulberry(a) {
+  return function () {
+    a |= 0; a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function brainPoints(n, rand) {
+  const pts = [];
+  while (pts.length < n) {
+    const u = rand() * 2 - 1, th = rand() * Math.PI * 2;
+    const r = Math.sqrt(1 - u * u);
+    let x = r * Math.cos(th), y = u, z = r * Math.sin(th);
+    const side = x >= 0 ? 1 : -1;
+    const fold = 1 + 0.07 * Math.sin(9 * y + 5 * z) * Math.cos(7 * x + 3 * y) + 0.04 * Math.sin(17 * z);
+    x = side * (0.12 + Math.abs(x) * 0.78) * fold;
+    y = y * 0.78 * fold;
+    z = z * 1.08 * fold;
+    if (y < -0.45 && z > 0.2) continue;
+    pts.push(new THREE.Vector3(x, y, z));
+  }
+  return pts;
+}
+
+function init(el) {
+  if (el.dataset.ready) return;
+  el.dataset.ready = "1";
+  const rand = mulberry(42);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 50);
+  camera.position.set(0, 0.25, 4.1);
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  el.appendChild(renderer.domElement);
+
+  const group = new THREE.Group();
+  scene.add(group);
+
+  const pts = brainPoints(2600, rand);
+  const pos = new Float32Array(pts.length * 3);
+  const col = new Float32Array(pts.length * 3);
+  const cA = new THREE.Color("#22d3ee"), cB = new THREE.Color("#a78bfa"), cC = new THREE.Color("#f472b6");
+  pts.forEach((p, i) => {
+    pos.set([p.x, p.y, p.z], i * 3);
+    const t = (p.z + 1.1) / 2.2;
+    const c = t < 0.5 ? cA.clone().lerp(cB, t * 2) : cB.clone().lerp(cC, (t - 0.5) * 2);
+    col.set([c.r, c.g, c.b], i * 3);
+  });
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+  const dot = document.createElement("canvas");
+  dot.width = dot.height = 64;
+  const g = dot.getContext("2d");
+  const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  grad.addColorStop(0, "rgba(255,255,255,1)");
+  grad.addColorStop(0.3, "rgba(255,255,255,0.6)");
+  grad.addColorStop(1, "rgba(255,255,255,0)");
+  g.fillStyle = grad; g.fillRect(0, 0, 64, 64);
+  const points = new THREE.Points(geo, new THREE.PointsMaterial({
+    size: 0.045, vertexColors: true, map: new THREE.CanvasTexture(dot),
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  }));
+  group.add(points);
+
+  const seg = [], segCol = [], edges = [];
+  for (let i = 0; i < pts.length && edges.length < 1400; i += 2) {
+    for (let j = i + 1; j < Math.min(pts.length, i + 60); j++) {
+      if (pts[i].distanceTo(pts[j]) < 0.19) {
+        edges.push([i, j]);
+        seg.push(pts[i].x, pts[i].y, pts[i].z, pts[j].x, pts[j].y, pts[j].z);
+        segCol.push(col[i * 3], col[i * 3 + 1], col[i * 3 + 2], col[j * 3], col[j * 3 + 1], col[j * 3 + 2]);
+        break;
+      }
+    }
+  }
+  const lgeo = new THREE.BufferGeometry();
+  lgeo.setAttribute("position", new THREE.Float32BufferAttribute(seg, 3));
+  lgeo.setAttribute("color", new THREE.Float32BufferAttribute(segCol, 3));
+  group.add(new THREE.LineSegments(lgeo, new THREE.LineBasicMaterial({
+    vertexColors: true, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending, depthWrite: false,
+  })));
+
+  const NP = 90;
+  const pulses = Array.from({ length: NP }, () => ({ a: Math.floor(rand() * pts.length), b: Math.floor(rand() * pts.length), t: rand(), s: 0.004 + rand() * 0.01 }));
+  const ppos = new Float32Array(NP * 3);
+  const pgeo = new THREE.BufferGeometry();
+  pgeo.setAttribute("position", new THREE.BufferAttribute(ppos, 3));
+  group.add(new THREE.Points(pgeo, new THREE.PointsMaterial({
+    size: 0.11, color: "#e0f7ff", map: points.material.map, transparent: true,
+    depthWrite: false, blending: THREE.AdditiveBlending,
+  })));
+
+  const ring = new THREE.Mesh(
+    new THREE.TorusGeometry(1.75, 0.004, 8, 200),
+    new THREE.MeshBasicMaterial({ color: "#22d3ee", transparent: true, opacity: 0.35 })
+  );
+  ring.rotation.x = Math.PI / 2.3;
+  scene.add(ring);
+  const ring2 = ring.clone();
+  ring2.material = ring.material.clone();
+  ring2.material.color.set("#a78bfa");
+  ring2.scale.setScalar(1.12);
+  ring2.rotation.x = Math.PI / 1.8;
+  ring2.rotation.y = 0.5;
+  scene.add(ring2);
+
+  let mx = 0, my = 0;
+  window.addEventListener("pointermove", (e) => {
+    mx = (e.clientX / window.innerWidth - 0.5) * 2;
+    my = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  function resize() {
+    const w = el.clientWidth || 400, h = el.clientHeight || 400;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(el);
+  resize();
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clock = new THREE.Clock();
+  function frame() {
+    const t = clock.getElapsedTime();
+    group.rotation.y = t * 0.18 + mx * 0.35;
+    group.rotation.x = -0.15 + my * 0.18;
+    group.position.y = Math.sin(t * 0.8) * 0.04;
+    ring.rotation.z = t * 0.2;
+    ring2.rotation.z = -t * 0.14;
+    pulses.forEach((p, i) => {
+      p.t += p.s;
+      if (p.t > 1) { p.t = 0; p.a = p.b; p.b = Math.floor(rand() * pts.length); }
+      const v = pts[p.a].clone().lerp(pts[p.b], p.t);
+      ppos.set([v.x, v.y, v.z], i * 3);
+    });
+    pgeo.attributes.position.needsUpdate = true;
+    points.material.size = 0.045 + Math.sin(t * 2) * 0.004;
+    renderer.render(scene, camera);
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+function tilt() {
+  document.addEventListener("pointermove", (e) => {
+    document.querySelectorAll(".nf-tilt").forEach((card) => {
+      const r = card.getBoundingClientRect();
+      const inside = e.clientX > r.left && e.clientX < r.right && e.clientY > r.top && e.clientY < r.bottom;
+      if (!inside) { card.style.transform = ""; return; }
+      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(900px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateZ(0)`;
+      card.style.setProperty("--mx", `${(x + 0.5) * 100}%`);
+      card.style.setProperty("--my", `${(y + 0.5) * 100}%`);
+    });
+  });
+}
+
+const obs = new MutationObserver(() => {
+  const el = document.getElementById("nf-brain");
+  if (el) init(el);
+});
+obs.observe(document.documentElement, { childList: true, subtree: true });
+tilt();
+</script>

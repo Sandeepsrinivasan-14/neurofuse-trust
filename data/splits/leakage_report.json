@@ -1,0 +1,10 @@
+{
+  "train_dups_dropped": 882,
+  "test_dups_dropped": 56,
+  "train_test_overlap_removed": 234,
+  "sizes": {
+    "train": 7256,
+    "val": 1278,
+    "test": 2358
+  }
+}

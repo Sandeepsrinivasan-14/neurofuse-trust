@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="1100" height="420" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070a18"/>
+      <stop offset="1" stop-color="#0d1030"/>
+    </linearGradient>
+    <radialGradient id="glowC" cx="0.2" cy="0.25" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowV" cx="0.8" cy="0.8" r="0.55">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.025"/>
+    </linearGradient>
+    <linearGradient id="cyanEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="violetEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="fuseEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.5" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+    <linearGradient id="gateFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0.35"/>
+    </linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#94a3ff" stroke-opacity="0.07"/>
+    </pattern>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <style>
+      .flow { fill: none; stroke-width: 2.2; stroke-dasharray: 6 10; animation: dash 1.6s linear infinite; }
+      .t { fill: #e6ebff; font-size: 15px; font-weight: 600; }
+      .s { fill: #8b93b8; font-size: 12px; }
+      .m { font-family: Consolas, "JetBrains Mono", monospace; font-size: 12.5px; fill: #a5f3fc; }
+      .h { fill: #ffffff; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; }
+      .pulse { animation: pulse 2.4s ease-in-out infinite; transform-origin: 700px 210px; }
+      .bar { animation: grow 3s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: left; }
+      @keyframes dash { to { stroke-dashoffset: -32; } }
+      @keyframes pulse { 0%, 100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+      @keyframes grow { from { transform: scaleX(0.35); } to { transform: scaleX(1); } }
+    </style>
+  </defs>
+
+  <rect width="1100" height="420" rx="28" fill="url(#bg)"/>
+  <rect width="1100" height="420" rx="28" fill="url(#grid)"/>
+  <rect width="1100" height="420" rx="28" fill="url(#glowC)"/>
+  <rect width="1100" height="420" rx="28" fill="url(#glowV)"/>
+  <text x="40" y="44" class="h">GATED FUSION HYBRID</text>
+  <text x="40" y="66" class="s">NeuroFuse-Trust architecture · 224×224 MRI → 4 classes</text>
+
+  <path class="flow" stroke="#22d3ee" d="M176 210 C 215 210, 215 132, 258 132"/>
+  <path class="flow" stroke="#a78bfa" d="M176 210 C 215 210, 215 288, 258 288"/>
+  <path class="flow" stroke="#22d3ee" d="M448 132 L 488 132"/>
+  <path class="flow" stroke="#a78bfa" d="M448 288 L 488 288"/>
+  <path class="flow" stroke="#22d3ee" d="M598 132 C 640 132, 640 196, 652 204"/>
+  <path class="flow" stroke="#a78bfa" d="M598 288 C 640 288, 640 224, 652 216"/>
+  <path class="flow" stroke="url(#fuseEdge)" d="M748 210 L 800 210"/>
+  <path class="flow" stroke="#f472b6" d="M912 210 C 935 210, 935 122, 958 122"/>
+  <path class="flow" stroke="#f472b6" d="M912 210 C 935 210, 935 184, 958 184"/>
+  <path class="flow" stroke="#f472b6" d="M912 210 C 935 210, 935 246, 958 246"/>
+  <path class="flow" stroke="#f472b6" d="M912 210 C 935 210, 935 308, 958 308"/>
+
+  <g>
+    <rect x="40" y="142" width="136" height="136" rx="22" fill="url(#glass)" stroke="#94a3ff" stroke-opacity="0.35"/>
+    <ellipse cx="108" cy="204" rx="40" ry="46" fill="none" stroke="#cbd5ff" stroke-opacity="0.8" stroke-width="2"/>
+    <path d="M108 160 C 96 180, 120 196, 104 214 S 116 238, 108 250" fill="none" stroke="#cbd5ff" stroke-opacity="0.5" stroke-width="1.5"/>
+    <circle cx="124" cy="192" r="9" fill="#f472b6" fill-opacity="0.55"/>
+    <circle cx="124" cy="192" r="15" fill="#f472b6" fill-opacity="0.18" filter="url(#soft)"/>
+    <text x="108" y="300" text-anchor="middle" class="t">MRI slice</text>
+    <text x="108" y="318" text-anchor="middle" class="s">3 × 224 × 224</text>
+  </g>
+
+  <g>
+    <rect x="258" y="96" width="190" height="72" rx="18" fill="url(#glass)" stroke="url(#cyanEdge)" stroke-width="1.5"/>
+    <g fill="#22d3ee">
+      <rect x="276" y="112" width="10" height="40" rx="3" fill-opacity="0.9"/>
+      <rect x="290" y="117" width="10" height="30" rx="3" fill-opacity="0.7"/>
+      <rect x="304" y="121" width="10" height="22" rx="3" fill-opacity="0.5"/>
+      <rect x="318" y="125" width="10" height="14" rx="3" fill-opacity="0.35"/>
+    </g>
+    <text x="338" y="128" class="t">EfficientNet-B0</text>
+    <text x="338" y="147" class="s">CNN · local texture</text>
+  </g>
+  <g>
+    <rect x="258" y="252" width="190" height="72" rx="18" fill="url(#glass)" stroke="url(#violetEdge)" stroke-width="1.5"/>
+    <g fill="#a78bfa">
+      <rect x="276" y="268" width="17" height="17" rx="3" fill-opacity="0.85"/>
+      <rect x="296" y="268" width="17" height="17" rx="3" fill-opacity="0.45"/>
+      <rect x="276" y="288" width="17" height="17" rx="3" fill-opacity="0.45"/>
+      <rect x="296" y="288" width="17" height="17" rx="3" fill-opacity="0.85"/>
+    </g>
+    <text x="330" y="284" class="t">Swin-Tiny</text>
+    <text x="330" y="303" class="s">Transformer · global</text>
+  </g>
+
+  <g>
+    <rect x="488" y="108" width="110" height="48" rx="14" fill="url(#glass)" stroke="#22d3ee" stroke-opacity="0.5"/>
+    <text x="543" y="129" text-anchor="middle" class="t">Linear</text>
+    <text x="543" y="146" text-anchor="middle" class="m">1280 → 256</text>
+    <rect x="488" y="264" width="110" height="48" rx="14" fill="url(#glass)" stroke="#a78bfa" stroke-opacity="0.5"/>
+    <text x="543" y="285" text-anchor="middle" class="t">Linear</text>
+    <text x="543" y="302" text-anchor="middle" class="m">768 → 256</text>
+    <text x="543" y="94" text-anchor="middle" class="m">f_cnn</text>
+    <text x="543" y="336" text-anchor="middle" class="m">f_tf</text>
+  </g>
+
+  <g>
+    <circle cx="700" cy="210" r="62" fill="#a78bfa" fill-opacity="0.12" filter="url(#soft)" class="pulse"/>
+    <circle cx="700" cy="210" r="48" fill="url(#gateFill)" stroke="url(#fuseEdge)" stroke-width="2"/>
+    <text x="700" y="206" text-anchor="middle" class="t" font-size="22">σ</text>
+    <text x="700" y="226" text-anchor="middle" class="s">gate g</text>
+    <text x="700" y="296" text-anchor="middle" class="m">g = σ(MLP([f_cnn ; f_tf]))</text>
+    <text x="700" y="316" text-anchor="middle" class="m">fused = g·f_cnn + (1−g)·f_tf</text>
+  </g>
+
+  <g>
+    <rect x="800" y="180" width="112" height="60" rx="16" fill="url(#glass)" stroke="#f472b6" stroke-opacity="0.55"/>
+    <text x="856" y="206" text-anchor="middle" class="t">LayerNorm</text>
+    <text x="856" y="225" text-anchor="middle" class="m">+ Linear → 4</text>
+  </g>
+
+  <g font-size="13">
+    <rect x="958" y="106" width="112" height="32" rx="10" fill="url(#glass)" stroke="#f472b6" stroke-opacity="0.6"/>
+    <rect x="966" y="130" width="96" height="3" rx="1.5" fill="#f472b6" class="bar"/>
+    <text x="1014" y="126" text-anchor="middle" class="t" font-size="13">glioma</text>
+    <rect x="958" y="168" width="112" height="32" rx="10" fill="url(#glass)" stroke="#a78bfa" stroke-opacity="0.6"/>
+    <rect x="966" y="192" width="70" height="3" rx="1.5" fill="#a78bfa" class="bar"/>
+    <text x="1014" y="188" text-anchor="middle" class="t" font-size="13">meningioma</text>
+    <rect x="958" y="230" width="112" height="32" rx="10" fill="url(#glass)" stroke="#34d399" stroke-opacity="0.6"/>
+    <rect x="966" y="254" width="50" height="3" rx="1.5" fill="#34d399" class="bar"/>
+    <text x="1014" y="250" text-anchor="middle" class="t" font-size="13">no tumor</text>
+    <rect x="958" y="292" width="112" height="32" rx="10" fill="url(#glass)" stroke="#38bdf8" stroke-opacity="0.6"/>
+    <rect x="966" y="316" width="84" height="3" rx="1.5" fill="#38bdf8" class="bar"/>
+    <text x="1014" y="312" text-anchor="middle" class="t" font-size="13">pituitary</text>
+  </g>
+
+  <g transform="translate(40 372)">
+    <rect width="1020" height="1" fill="#94a3ff" fill-opacity="0.14"/>
+    <circle cx="6" cy="24" r="5" fill="#22d3ee"/><text x="18" y="28" class="s">Grad-CAM on CNN branch</text>
+    <circle cx="206" cy="24" r="5" fill="#a78bfa"/><text x="218" y="28" class="s">Gate value reported per prediction</text>
+    <circle cx="446" cy="24" r="5" fill="#f472b6"/><text x="458" y="28" class="s">Temperature-scaled softmax (T fit on validation)</text>
+    <circle cx="766" cy="24" r="5" fill="#34d399"/><text x="778" y="28" class="s">Backbone lr 5e-5 · head lr 2e-4 · AMP</text>
+  </g>
+</svg>

@@ -1,0 +1,45 @@
+# Documents (report, slides, PDFs) stay local
+docs/
+*.pdf
+*.ppt
+*.pptx
+*.doc
+*.docx
+*.xls
+*.xlsx
+~$*
+
+# Dataset (download separately, see README)
+data/raw/
+data/archive/
+*.zip
+
+# Model weights ship as GitHub Release assets, not in git
+outputs/checkpoints/**/*.pt
+outputs/checkpoints/**/*.part
+*.pth
+*.ckpt
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Tooling and logs
+*.log
+.gradio/
+flagged/
+.playwright-mcp/
+graphify-out/
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local assistant notes
+CLAUDE.md
