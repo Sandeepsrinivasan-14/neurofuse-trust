@@ -22,10 +22,16 @@ def ensure_weights(name, quiet=False):
         print(f"Downloading {name} weights from {url}")
     tmp = path.with_suffix(".part")
 
+    last = [-1]
+
     def hook(blocks, block_size, total):
         if quiet or total <= 0:
             return
         done = min(blocks * block_size, total)
+        pct = int(done * 20 / total)
+        if pct == last[0]:
+            return
+        last[0] = pct
         sys.stdout.write(f"\r  {name}: {done / 1e6:6.1f} / {total / 1e6:.1f} MB")
         sys.stdout.flush()
 

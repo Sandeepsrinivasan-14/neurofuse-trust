@@ -154,8 +154,8 @@ The app also downloads missing weights automatically the first time it runs. It 
 | Model | File | Size |
 |:--|:--|--:|
 | NeuroFuse Hybrid | [`hybrid.pt`](https://github.com/Sandeepsrinivasan-14/neurofuse-trust/releases/download/v1.0.0/hybrid.pt) | 123 MB |
-| CoAtNet-0 | [`coatnet.pt`](https://github.com/Sandeepsrinivasan-14/neurofuse-trust/releases/download/v1.0.0/coatnet.pt) | 105 MB |
-| Swin-Tiny | [`swin.pt`](https://github.com/Sandeepsrinivasan-14/neurofuse-trust/releases/download/v1.0.0/swin.pt) | 102 MB |
+| CoAtNet-0 | [`coatnet.pt`](https://github.com/Sandeepsrinivasan-14/neurofuse-trust/releases/download/v1.0.0/coatnet.pt) | 102 MB |
+| Swin-Tiny | [`swin.pt`](https://github.com/Sandeepsrinivasan-14/neurofuse-trust/releases/download/v1.0.0/swin.pt) | 105 MB |
 | EfficientNet-B0 | [`effnet.pt`](https://github.com/Sandeepsrinivasan-14/neurofuse-trust/releases/download/v1.0.0/effnet.pt) | 16 MB |
 
 Each file is a plain `state_dict` and goes in `outputs/checkpoints/<model>/best.pt`.
