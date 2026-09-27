@@ -34,6 +34,7 @@ NeuroFuse-Trust classifies axial brain MRI slices into **glioma**, **meningioma*
 - **Gated fusion.** A sigmoid gate weights CNN features (local texture) against Transformer features (global context) separately for each input.
 - **Explainability.** Each prediction comes with a Grad-CAM map, and a deletion test checks how faithful those maps are.
 - **Calibration.** Temperature scaling is fit on the validation set. Expected calibration error (ECE) is reported before and after scaling.
+- **Dataset.** [Brain Tumor MRI Dataset](https://data.mendeley.com/datasets/zwr4ntf94j/1) (Mendeley Data, Epic and CSCR hospital), 12,064 T1-weighted contrast-enhanced slices.
 - **Leakage audit.** Every image is SHA-256 hashed before splitting. The audit removed 938 exact duplicates and 234 images that appeared in both the training and test sets.
 
 ## Results
@@ -154,7 +155,7 @@ print(pred.label, pred.dist(calibrated=True), pred.gate)
 
 The full pipeline (data audit, training, evaluation, Grad-CAM and calibration) is a single notebook, [`NeuroFuse_Trust.ipynb`](NeuroFuse_Trust.ipynb). It is generated from the jupytext source [`NeuroFuse_Trust.py`](NeuroFuse_Trust.py).
 
-1. Download the Brain Tumor MRI Dataset (Epic and CSCR hospital, 4 classes) and extract it to:
+1. Download the [Brain Tumor MRI Dataset (Glioma, Meningioma, Pituitary, No Tumor)](https://data.mendeley.com/datasets/zwr4ntf94j/1) from Mendeley Data (Epic and CSCR hospital, 12,064 T1-weighted contrast-enhanced images, CC BY 4.0). Unzip `Epic and CSCR hospital Dataset.zip` so the images end up at:
    ```text
    data/raw/Epic and CSCR hospital Dataset/{Train,Test}/{glioma,meningioma,notumor,pituitary}/*.jpg
    ```
@@ -211,7 +212,7 @@ Built with [PyTorch](https://pytorch.org/), [timm](https://github.com/huggingfac
 
 ## License
 
-The code is released under the [MIT License](LICENSE). The dataset is not redistributed in this repository; use it under its original license.
+The code is released under the [MIT License](LICENSE). The dataset is not redistributed in this repository. It is available from [Mendeley Data](https://data.mendeley.com/datasets/zwr4ntf94j/1) under the CC BY 4.0 license.
 
 ---
 
