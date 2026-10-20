@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: CPU-only torch first (runners have no GPU)
+        run: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - name: App dependencies (training/notebook extras are not needed for tests)
+        run: pip install timm gradio grad-cam plotly pandas numpy pillow opencv-python-headless scikit-learn pytest
+      - run: python -m pytest -q
